@@ -1,27 +1,29 @@
-class Tratamientp:
-    # TtP : Treatment to people
-    def __init__(self, Dni, name, surname, diagnostic, monto, complejidad):
-        self.Dni = Dni
-        self.name = str(name)
-        self.surname = str(surname)
-        self.diagnostic = diagnostic
-        self.monto = monto
+class Tratamiento:
+
+    def __init__(self, dni, nombre, apellido, diagnostico, monto_base, complejidad, algoritmo):
+        self.dni = dni
+        self.nombre = nombre
+        self.apellido = apellido
+        self.diagnostico = diagnostico
+        self.monto_base = monto_base
         self.complejidad = complejidad
+        self.algoritmo = algoritmo
+        self.monto_final = 0
 
     def __str__(self):
-        r = "Dni:{} ,name:{}, surname:{}, diagnostic:{}, dinero:{}, complejidad:{}"
-        return r.format(self.Dni, self.name, self.surname,self.diagnostic, self.monto, self.complejidad)
-
+        r = "DNI: {} - Nombre: {} - Apellido: {} - Diagnostico: {} - Monto base: {} - Complejidad: {} - Algoritmo: {} - Monto final: {}"
+        return r.format(self.dni, self.nombre, self.apellido, self.diagnostico,
+                        self.monto_base, self.complejidad, self.algoritmo, self.monto_final)
 
 def procesar_linea(linea):
     partes = linea.split(",")
     Dni = int(partes[0])
-    nom = partes[1]
-    apeli = partes[2]
-    icd10 = partes[3]
-    monto = float(partes[4])
+    name = partes[1]
+    surname = partes[2]
+    diagnostic = partes[3]
+    monto_base = float(partes[4])
     complejidad = partes[5]
-
-    t = Tratamientp(Dni, nom, apeli, icd10, monto, complejidad)
+    ide  = partes[6]
+    t = Tratamiento(Dni, name, surname, diagnostic, monto_base, complejidad,ide)
 
     return t
